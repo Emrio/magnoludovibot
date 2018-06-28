@@ -11,6 +11,33 @@ const Bot = new Discord.Client()
 login(Bot)
 
 
+/* ON MESSAGE EVENT */
+Bot.on("message", (message) => {
+
+  var content = message.content // Get message's content
+  var author = message.author // Get message author
+  var guild = message.guild // Get message's guild
+  var channel = message.channel // Get message's channel
+  var member = message.member // The guild member of the message
+  var prefix = getprefix() // The server's prefix
+
+  // Do not process if the message is not correct (from DM for instance)
+  if(message === undefined || author === undefined || guild === undefined || channel === undefined || guild === null || member === undefined || member === null) return
+
+  // Do not process if the message is from a bot
+  if(author.bot) return
+
+
+  if(content.startsWith(prefix)) {
+
+    
+
+  }
+
+
+
+})
+
 /* SERVER NEW MEMBER EVENT */
 Bot.on("guildMemberAdd", (member) => {
 
