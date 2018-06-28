@@ -75,10 +75,10 @@ Bot.on("ready", () => {
 
 /* ERROR EVENT */
 Bot.on("error", (err) => {
-  console.error(err);
+  console.error(err)
 })
 
 /* WARNING EVENT */
 Bot.on("warn", (warn) => {
-  console.warn(warn);
+  console.warn(warn)
 })
