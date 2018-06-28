@@ -32,6 +32,45 @@ Bot.on("guildMemberAdd", (member) => {
 /* BOT READY EVENT */
 Bot.on("ready", () => {
   console.log("Connecté!")
+
+
+  /* SET PERMISSIONS FOR CLASS CHANNELS
+  var perms = {
+    CREATE_INSTANT_INVITE: false,
+    MANAGE_CHANNELS: false,
+    MANAGE_GUILD: false,
+    ADD_REACTIONS: true,
+    VIEW_CHANNEL: true,
+    READ_MESSAGES: true,
+    SEND_MESSAGES: true,
+    SEND_TTS_MESSAGES: true,
+    MANAGE_MESSAGES: false,
+    EMBED_LINKS: true,
+    ATTACH_FILES: true,
+    READ_MESSAGE_HISTORY: true,
+    MENTION_EVERYONE: false,
+    EXTERNAL_EMOJIS: true,
+    USE_EXTERNAL_EMOJIS: true,
+    MANAGE_WEBHOOKS: false,
+  }
+
+  var channels = Bot.guilds.find("id", "461887502631043082").channels
+
+  var channels = channels.filter((element) => {
+    if(element.name.startsWith("2nd-") || element.name.startsWith("1s-") || element.name.startsWith("1l") || element.name.startsWith("ts-") || element.name.startsWith("tl")) {
+      return true
+    }
+  })
+
+  channels.array().forEach((element) => {
+    var rolename = (element.name.startsWith("2nd")) ? element.name : element.name.toUpperCase()
+    var role = Bot.guilds.find("id", "461887502631043082").roles.find("name", rolename)
+    console.log(role.name)
+    element.overwritePermissions(role, perms)
+  })
+  */
+
+
 })
 
 /* ERROR EVENT */
