@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
 const fs = require('fs')
 const login = require("./assets/login")
+const getprefix = require('./assets/getprefix')
 
 // The Bot Object
 const Bot = new Discord.Client()
