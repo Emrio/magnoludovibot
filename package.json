@@ -1,0 +1,25 @@
+{
+  "name": "magnoludovibot",
+  "version": "1.0.0",
+  "description": "Bot Discord pour le serveur du Lycée Louis-Le-Grand",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "emrioutils"
+  },
+  "keywords": [
+    "Discord",
+    "Bot",
+    "Lycée",
+    "Louis-Le-Grand"
+  ],
+  "author": "Emrio <emrio@emrio.fr>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "emrioutils": "^2.0.0"
+  }
+}
