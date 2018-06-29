@@ -4,11 +4,6 @@ const fs = require('fs')
 
 module.exports = () => {
 
-  fs.readFile("./assets/config.json", (err, data) => {
-
-    var config = JSON.parse(data)
-
-    return config.prefix
-
-  })
+  var config = JSON.parse(fs.readFileSync("./assets/config.json"))
+  return config.prefix
 }
