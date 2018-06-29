@@ -4,6 +4,10 @@ const fs = require('fs')
 const login = require("./assets/login")
 const getprefix = require('./assets/getprefix')
 
+// Command handlers
+var COMMANDHANDLERS = {}
+COMMANDHANDLERS.admin = require("./assets/handlers/admin")
+
 // The Bot Object
 const Bot = new Discord.Client()
 
@@ -31,6 +35,30 @@ Bot.on("message", (message) => {
   if(content.startsWith(prefix)) {
 
     
+    var args = content.substr(1).split(" ")
+
+    console.log("New command: " + args[0])
+
+    var metaquery = {
+      content: content,
+      author: author,
+      guild: guild,
+      channel: channel,
+      member: member,
+      prefix: prefix,
+      args: args,
+      message: message,
+    }
+
+    switch (args[0]) {
+      case "admin":
+        COMMANDHANDLERS.admin(metaquery)
+        break
+
+      default:
+        console.warn("Unrecognized command")
+
+    }
 
   }
 
