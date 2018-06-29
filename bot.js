@@ -31,10 +31,8 @@ Bot.on("message", (message) => {
   // Do not process if the message is from a bot
   if(author.bot) return
 
-
   if(content.startsWith(prefix)) {
 
-    
     var args = content.substr(1).split(" ")
 
     console.log("New command: " + args[0])
@@ -87,6 +85,59 @@ Bot.on("guildMemberAdd", (member) => {
 /* BOT READY EVENT */
 Bot.on("ready", () => {
   console.log("Connecté!")
+
+  //console.log(Discord.Permissions.FLAGS);
+
+  /* SET MODERATOR PERMS FOR ALL PUBLICS CHANS */
+
+  // var allperms = {
+  //   CREATE_INSTANT_INVITE: true,
+  //   KICK_MEMBERS: true,
+  //   BAN_MEMBERS: true,
+  //   ADMINISTRATOR: false,
+  //   MANAGE_CHANNELS: true,
+  //   MANAGE_GUILD: true,
+  //   ADD_REACTIONS: true,
+  //   VIEW_AUDIT_LOG: true,
+  //   VIEW_CHANNEL: true,
+  //   READ_MESSAGES: true,
+  //   SEND_MESSAGES: true,
+  //   SEND_TTS_MESSAGES: true,
+  //   MANAGE_MESSAGES: true,
+  //   EMBED_LINKS: true,
+  //   ATTACH_FILES: true,
+  //   READ_MESSAGE_HISTORY: true,
+  //   MENTION_EVERYONE: true,
+  //   EXTERNAL_EMOJIS: true,
+  //   USE_EXTERNAL_EMOJIS: true,
+  //   CONNECT: true,
+  //   SPEAK: true,
+  //   MUTE_MEMBERS: true,
+  //   DEAFEN_MEMBERS: true,
+  //   MOVE_MEMBERS: true,
+  //   USE_VAD: true,
+  //   CHANGE_NICKNAME: true,
+  //   MANAGE_NICKNAMES: true,
+  //   MANAGE_ROLES: true,
+  //   MANAGE_ROLES_OR_PERMISSIONS: true,
+  //   MANAGE_WEBHOOKS: true,
+  //   MANAGE_EMOJIS: true
+  // }
+  //
+  // var channels = Bot.guilds.find("id", "461887502631043082").channels
+  //
+  // var channels = channels.filter((element) => {
+  //   if(!element.name.startsWith("2nd-") && !element.name.startsWith("1s-") && !element.name.startsWith("1l") && !element.name.startsWith("ts-") && !element.name.startsWith("tl")) {
+  //     return true
+  //   }
+  // })
+  //
+  // channels.array().forEach((element) => {
+  //   var role = Bot.guilds.find("id", "461887502631043082").roles.find("name", "Modération")
+  //   console.log(role.name)
+  //   element.overwritePermissions(role, allperms)
+  // })
+
 
 
   /* SET PERMISSIONS FOR CLASS CHANNELS
