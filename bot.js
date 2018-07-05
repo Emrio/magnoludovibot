@@ -11,6 +11,9 @@ COMMANDHANDLERS.admin = require("./assets/handlers/admin")
 // The Bot Object
 const Bot = new Discord.Client()
 
+// Global objects
+var GUILD = null // LLG Guild
+
 // Logs the bot in discord
 login(Bot)
 
@@ -96,7 +99,7 @@ Bot.on("message", (message) => {
 /* SERVER NEW MEMBER EVENT */
 Bot.on("guildMemberAdd", (member) => {
 
-  console.log("[Server Management] New member joined")
+  console.log("[Gestion Serveur] (🆕) Nouveau membre : " + member.user.username)
 
   var guild = member.guild
   var invitedRole = guild.roles.find("name", "Invités")
@@ -112,7 +115,8 @@ Bot.on("guildMemberAdd", (member) => {
 
 /* BOT READY EVENT */
 Bot.on("ready", () => {
-  console.log("Connecté!")
+  GUILD = Bot.guilds.find("id", "461887502631043082")
+  console.log("[Bot] (🔔) Prêt à vous servir.")
 })
 
 /* ERROR EVENT */
