@@ -3,6 +3,8 @@ const emrioutils = require('emrioutils')
 const fs = require('fs')
 const login = require("./assets/login")
 const getprefix = require('./assets/getprefix')
+const switchToUpperClass = require('./assets/switchToUpperClass')
+const getClassByLevelAndNumber = require('./assets/getClassByLevelAndNumber')
 
 // Command handlers
 var COMMANDHANDLERS = {}
@@ -14,6 +16,33 @@ const Bot = new Discord.Client()
 // Logs the bot in discord
 login(Bot)
 
+
+/* ON REACTION ADD EVENT */
+Bot.on("messageReactionAdd", (reaction, user) => {
+
+  if(user.bot) return
+  if(reaction.message.guild !== null) return
+
+  if(reaction.message.author.bot) {
+
+    var member = Bot.guilds.first().members.find("id", user.id)
+    var level = member.roles.find(role => role.name === "Secondes" || role.name === "Premières" || role.name === "Terminales")
+
+         if(reaction.emoji.name === "1⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 1))
+    else if(reaction.emoji.name === "2⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 2))
+    else if(reaction.emoji.name === "3⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 3))
+    else if(reaction.emoji.name === "4⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 4))
+    else if(reaction.emoji.name === "5⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 5))
+    else if(reaction.emoji.name === "6⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 6))
+    else if(reaction.emoji.name === "7⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 7))
+    else if(reaction.emoji.name === "🇱") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, "L"))
+
+    reaction.message.delete()
+    user.send("Merci. Votre affectation peut prendre quelques secondes...")
+
+  }
+
+})
 
 /* ON MESSAGE EVENT */
 Bot.on("message", (message) => {
