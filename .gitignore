@@ -3,3 +3,5 @@ config.json
 oldcodes/
 assets/config.json
 *.json
+node_modules/
+node_modules
