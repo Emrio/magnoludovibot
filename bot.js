@@ -7,6 +7,7 @@ const getprefix = require('./assets/getprefix')
 // Command handlers
 var COMMANDHANDLERS = {}
 COMMANDHANDLERS.admin = require("./assets/handlers/admin")
+COMMANDHANDLERS.switchclass = require("./assets/handlers/switchclass")
 
 // The Bot Object
 const Bot = new Discord.Client()
@@ -137,6 +138,10 @@ Bot.on("message", (message) => {
       case "admin":
         COMMANDHANDLERS.admin(metaquery)
         break
+
+      case "switchClass":
+        COMMANDHANDLERS.switchclass(GUILD, message)
+        break;
 
       default:
         console.warn("Unrecognized command")
