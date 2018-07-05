@@ -1,3 +1,5 @@
 .TODO
-assets/config.json
+config.json
 oldcodes/
+assets/config.json
+*.json
