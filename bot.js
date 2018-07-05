@@ -20,30 +20,83 @@ login(Bot)
 
 /* ON REACTION ADD EVENT */
 Bot.on("messageReactionAdd", (reaction, user) => {
+  if(user.bot) return false
+  if(reaction.message.author.id !== Bot.user.id) return false
+  if(reaction.message.guild !== null) return false
+  if(!reaction.me) return false
 
-  if(user.bot) return
-  if(reaction.message.guild !== null) return
+  const levels = ["Secondes", "Premières", "Terminales"]
 
-  if(reaction.message.author.bot) {
+  var newLevel = GUILD.members.find("id", user.id).roles.find((role) => levels.includes(role.name) )
 
-    var member = Bot.guilds.first().members.find("id", user.id)
-    var level = member.roles.find(role => role.name === "Secondes" || role.name === "Premières" || role.name === "Terminales")
+       if(newLevel.name === "Secondes") var classdiscriminator = "2nd-"
+  else if(newLevel.name === "Premières") var classdiscriminator = "1S-"
+  else if(newLevel.name === "Terminales") var classdiscriminator = "TS-"
 
-         if(reaction.emoji.name === "1⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 1))
-    else if(reaction.emoji.name === "2⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 2))
-    else if(reaction.emoji.name === "3⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 3))
-    else if(reaction.emoji.name === "4⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 4))
-    else if(reaction.emoji.name === "5⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 5))
-    else if(reaction.emoji.name === "6⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 6))
-    else if(reaction.emoji.name === "7⃣") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, 7))
-    else if(reaction.emoji.name === "🇱") member.addRole(getClassByLevelAndNumber(Bot.guilds.first(), level, "L"))
+  // Function that takes the class attribute (1-7, L or T) and puts the new class to the user
+  var newClass = (num) => {
+    // S series classname
+         if(typeof num === "number") var classname = classdiscriminator + num.toString()
+    // L series classname
+    else if(num === "L" && newLevel.name === "Premières") var classname = "1L"
+    else if(num === "L" && newLevel.name === "Terminales") var classname = "TL"
+    // STI2D series classname
+    else if(num === "STI2D" && newLevel.name === "Premières") var classname = "1STI2D"
+    else if(num === "STI2D" && newLevel.name === "Terminales") var classname = "TSTI2D"
 
+    // Adds the role to the user
+    GUILD.members.find("id", user.id).addRole(GUILD.roles.find("name", classname), "[MAJ Classes] Affectation de la nouvelle classe.")
+      .catch(console.error)
+      .then(() => {
+        user.send("Votre nouvelle classe vous a été affecté. Passez une bonne année !")
+        console.log("[MAJ Classes] (🎒) " + user.username + " a été affecté en " + classname)
+       })
+
+    // Deletes the prompt
     reaction.message.delete()
-    user.send("Merci. Votre affectation peut prendre quelques secondes...")
+      .catch(console.error)
+  }
 
+  // Puts the new class depending on emoji
+  switch (reaction.emoji.name) {
+    case "1⃣":
+      newClass(1)
+      break
+    case "2⃣":
+      newClass(2)
+      break
+    case "3⃣":
+      newClass(3)
+      break
+    case "4⃣":
+      newClass(4)
+      break
+    case "5⃣":
+      newClass(5)
+      break
+    case "6⃣":
+      newClass(6)
+      break
+    case "7⃣":
+      newClass(7)
+      break
+    case "🇱":
+      newClass("L")
+      break
+    case "🇹":
+      newClass("STI2D")
+      break
+
+    default:
+      console.warn("[MAJ Classes] (❗️) L'émoji envoyé n'était pas 1-7, L ou T. Cette réaction n'est pas normale.")
   }
 
 })
+
+
+
+
+
 
 /* ON MESSAGE EVENT */
 Bot.on("message", (message) => {
