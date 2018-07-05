@@ -18,6 +18,8 @@ login(Bot)
 /* ON MESSAGE EVENT */
 Bot.on("message", (message) => {
 
+  //console.log(Bot.emojis);
+
   var content = message.content // Get message's content
   var author = message.author // Get message author
   var guild = message.guild // Get message's guild
@@ -73,7 +75,6 @@ Bot.on("guildMemberAdd", (member) => {
   var invitedRole = guild.roles.find("name", "Invités")
 
   member.addRole(invitedRole)
-    .then(console.log)
     .catch(console.error)
 
   var welcomeText = "Bienvenue sur le serveur Discord du Lycée Louis-Le-Grand de la part de l'équipe de l'administration.\nJe suis Louis XIV, le bot principal du serveur.\nJe te conseille de lire le règlement du serveur puis de te présenter dans le channel `#présentation`. Si tu es un élève du lycée, merci de signaler ta classe dans ta présentation. Sinon, merci d'indiquier les raisons pour lesquels tu nous rejoins !\n\Je te souhaite de passer un bon temps avec nous !"
