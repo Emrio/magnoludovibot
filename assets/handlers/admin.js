@@ -1,8 +1,6 @@
 const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
 const fs = require('fs')
-const switchToUpperClass = require('./../switchToUpperClass')
-const switchToLowerClass = require('./../switchToLowerClass')
 
 module.exports = (metaquery) => {
 

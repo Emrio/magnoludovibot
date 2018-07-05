@@ -3,8 +3,6 @@ const emrioutils = require('emrioutils')
 const fs = require('fs')
 const login = require("./assets/login")
 const getprefix = require('./assets/getprefix')
-const switchToUpperClass = require('./assets/switchToUpperClass')
-const getClassByLevelAndNumber = require('./assets/getClassByLevelAndNumber')
 
 // Command handlers
 var COMMANDHANDLERS = {}
