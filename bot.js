@@ -102,8 +102,6 @@ Bot.on("messageReactionAdd", (reaction, user) => {
 /* ON MESSAGE EVENT */
 Bot.on("message", (message) => {
 
-  //console.log(Bot.emojis);
-
   var content = message.content // Get message's content
   var author = message.author // Get message author
   var guild = message.guild // Get message's guild
@@ -147,12 +145,13 @@ Bot.on("message", (message) => {
         console.warn("Unrecognized command")
 
     }
-
   }
-
-
-
 })
+
+
+
+
+
 
 /* SERVER NEW MEMBER EVENT */
 Bot.on("guildMemberAdd", (member) => {

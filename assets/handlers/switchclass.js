@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
- 
+
 
 
 module.exports = (GUILD, message) => {
