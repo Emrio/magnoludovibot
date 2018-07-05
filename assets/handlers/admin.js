@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
 const fs = require('fs')
+const switchToUpperClass = require('./../switchToUpperClass')
+const switchToLowerClass = require('./../switchToLowerClass')
 
 module.exports = (metaquery) => {
 
@@ -39,6 +41,33 @@ module.exports = (metaquery) => {
       } else channel.send("Utilisateur non reconnu")
 
     } else channel.send("Merci de spécifier un utilisateur")
+
+  } else if(args[1] === "upperClass") {
+
+    switchToUpperClass(guild.members,
+      [
+        guild.roles.find("name", "Pré-Seconde"),
+        guild.roles.find("name", "Secondes"),
+        guild.roles.find("name", "Premières"),
+        guild.roles.find("name", "Terminales"),
+        guild.roles.find("name", "Anciens élèves")
+      ]
+    )
+
+  } else if(args[1] === "lowerClass") {
+
+    switchToLowerClass(guild.members,
+      [
+        guild.roles.find("name", "Pré-Seconde"),
+        guild.roles.find("name", "Secondes"),
+        guild.roles.find("name", "Premières"),
+        guild.roles.find("name", "Terminales"),
+        guild.roles.find("name", "Anciens élèves")
+      ]
+    )
+
+    message.delete()
+    channel.send("Commande en cours de traitement...")
 
   } else {
     channel.send("Votre commande est incorrecte")
