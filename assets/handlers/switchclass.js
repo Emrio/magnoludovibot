@@ -101,6 +101,8 @@ module.exports = (GUILD, message) => {
 
                   // The user is now an old student
                   } else {
+                    text = "Vous êtes maintenant enregistré en tant qu'ancien élève du lycée. Vous pouvez contacter la Modération si vous passez dans les classes préparatoires du lycée."
+                    member.user.send(text)
                     stopwatch.stop()
                     console.log("[MAJ Classes] (✅) Demande de mise à jour de classe envoyée à " + member.user.username + ". Traité en " + stopwatch.elapsed() + "ms.")
                     resolve() // NEXT!!!
