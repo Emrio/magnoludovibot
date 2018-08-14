@@ -1,4 +1,4 @@
-# magnoludovibot
+# ![\[logo\]][logo-url] magnoludovibot
 
 > Bot Discord pour le serveur du Lycée Louis-Le-Grand
 
@@ -30,6 +30,7 @@ magnoludovibot est sous la license [MIT][license-url].
 [license-url]:https://github.com/TheEmrio/magnoludovibot/blob/master/LICENSE
 [github-url]:https://github.com/TheEmrio/magnoludovibot
 [author-url]:https://github.com/TheEmrio
+[logo-url]:https://cdn.discordapp.com/avatars/461929067315462164/60b044356d35e1e8ae61af84aef7f997.webp?size=64
 
 [node]:https://github.com/nodejs/node
 [discordjs]:https://github.com/discordjs/discord.js
