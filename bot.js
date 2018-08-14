@@ -1,9 +1,12 @@
 const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
 const fs = require('fs')
+
 const login = require("./assets/login")
 const getprefix = require('./assets/getprefix')
 const getcommmands = require('./assets/getcommands')
+
+const indev = require('./assets/getindev')
 
 // Command handlers
 var COMMANDHANDLERS = {}
@@ -104,6 +107,8 @@ Bot.on("messageReactionAdd", (reaction, user) => {
 /* ON MESSAGE EVENT */
 Bot.on("message", (message) => {
 
+  if (indev) console.log(message.content)
+
   var content = message.content // Get message's content
   var author = message.author // Get message author
   var guild = message.guild // Get message's guild
@@ -199,7 +204,11 @@ Bot.on("guildMemberAdd", (member) => {
 Bot.on("ready", () => {
   GUILD = Bot.guilds.find(g => g.id == "461887502631043082")
   console.log("[Bot] (🔔) Prêt à vous servir.")
-  Bot.user.setActivity("Version expérimentale en cours d'utilisation", { type: "WATCHING" })
+
+  if(indev) {
+    Bot.user.setActivity("Version expérimentale en cours d'utilisation", { type: "WATCHING" })
+    console.log("[Bot] (🛠 ) The bot is in dev mode")
+  } else Bot.user.setActivity("!help", { type: "WATCHING" })
 })
 
 /* ERROR EVENT */
