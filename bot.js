@@ -6,7 +6,7 @@ const login = require("./assets/login")
 const getprefix = require('./assets/getprefix')
 const getcommmands = require('./assets/getcommands')
 
-const indev = require('./assets/getindev')
+const indev = require('./assets/getindev')()
 
 // Command handlers
 var COMMANDHANDLERS = {}
