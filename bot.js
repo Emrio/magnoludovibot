@@ -9,6 +9,7 @@ var COMMANDHANDLERS = {}
 COMMANDHANDLERS.admin = require("./assets/handlers/admin")
 COMMANDHANDLERS.switchclass = require("./assets/handlers/switchclass")
 COMMANDHANDLERS.info = require("./assets/handlers/info")
+COMMANDHANDLERS.help = require("./assets/handlers/help")
 
 // The Bot Object
 const Bot = new Discord.Client()
@@ -144,6 +145,10 @@ Bot.on("message", (message) => {
 
       case "info":
         COMMANDHANDLERS.info(metaquery)
+        break
+
+      case "help":
+        COMMANDHANDLERS.help(metaquery)
         break
 
       default:
