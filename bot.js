@@ -30,7 +30,7 @@ Bot.on("messageReactionAdd", (reaction, user) => {
 
   const levels = ["Secondes", "Premières", "Terminales"]
 
-  var newLevel = GUILD.members.find("id", user.id).roles.find((role) => levels.includes(role.name) )
+  var newLevel = GUILD.members.find(m => m.id == user.id).roles.find((role) => levels.includes(role.name) )
 
        if(newLevel.name === "Secondes") var classdiscriminator = "2nd-"
   else if(newLevel.name === "Premières") var classdiscriminator = "1S-"
@@ -48,7 +48,7 @@ Bot.on("messageReactionAdd", (reaction, user) => {
     else if(num === "STI2D" && newLevel.name === "Terminales") var classname = "TSTI2D"
 
     // Adds the role to the user
-    GUILD.members.find("id", user.id).addRole(GUILD.roles.find("name", classname), "[MAJ Classes] Affectation de la nouvelle classe.")
+    GUILD.members.find(m => m.id == user.id).addRole(GUILD.roles.find(r => r.name == classname), "[MAJ Classes] Affectation de la nouvelle classe.")
       .catch(console.error)
       .then(() => {
         user.send("Votre nouvelle classe vous a été affecté. Passez une bonne année !")
@@ -169,7 +169,7 @@ Bot.on("guildMemberAdd", (member) => {
   console.log("[Gestion Serveur] (🆕) Nouveau membre : " + member.user.username)
 
   var guild = member.guild
-  var invitedRole = guild.roles.find("name", "Invités")
+  var invitedRole = guild.roles.find(r => r.name == "Invités")
 
   member.addRole(invitedRole)
     .catch(console.error)
@@ -182,7 +182,7 @@ Bot.on("guildMemberAdd", (member) => {
 
 /* BOT READY EVENT */
 Bot.on("ready", () => {
-  GUILD = Bot.guilds.find("id", "461887502631043082")
+  GUILD = Bot.guilds.find(g => g.id == "461887502631043082")
   console.log("[Bot] (🔔) Prêt à vous servir.")
 })
 

@@ -3,7 +3,7 @@ const emrioutils = require('emrioutils')
 const fs = require('fs')
 
 var membersInRoleCount = (guild, rolename) => {
-  return guild.members.filter(member => member.roles.find("name", rolename)).array().length
+  return guild.members.filter(member => member.roles.find(m => m.name == rolename)).array().length
 }
 
 module.exports = (metaquery) => {
@@ -23,7 +23,7 @@ module.exports = (metaquery) => {
 
   // Retrieve the mods
   mod_team = ""
-  guild.members.filter(member => member.roles.find("name", "Modération")).forEach(member => {
+  guild.members.filter(member => member.roles.find(m => m.name == "Modération")).forEach(member => {
     mod_team += member + "\n"
   })
 

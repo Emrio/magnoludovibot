@@ -11,7 +11,7 @@ module.exports = (metaquery) => {
   var guild = metaquery.guild
 
   var get_channel = (name) => {
-    return guild.channels.find("name", name)
+    return guild.channels.find(c => c.name == name)
   }
 
   // Generates the embed

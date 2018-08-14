@@ -24,7 +24,7 @@ module.exports = (metaquery) => {
 
         if(args[3] !== undefined) {
 
-          var role = guild.roles.find("name", args[3])
+          var role = guild.roles.find(r => r.name == args[3])
 
           if(role !== undefined) {
 

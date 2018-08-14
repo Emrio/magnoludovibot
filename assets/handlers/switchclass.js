@@ -38,7 +38,7 @@ module.exports = (GUILD, message) => {
 
       // Get the current level of the pupil (eg: Secondes), its new level (eg: Premières) and its current class (eg: 2nd-1)
       var currentLevel = member.roles.find(role => levels.includes(role.name))
-      var newLevel = GUILD.roles.find("name", levels[ levels.indexOf(currentLevel.name)+1 ] || "Anciens Élèves")
+      var newLevel = GUILD.roles.find(r => r.name == levels[ levels.indexOf(currentLevel.name)+1 ] || "Anciens Élèves")
       var currentClass = member.roles.find(role => classes.includes(role.name))
 
 // Remove level
