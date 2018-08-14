@@ -31,6 +31,9 @@ module.exports = (metaquery) => {
                 "Une présentation du casino et de ses commandes est disponible dans le channel " + get_channel("info-casino") + ". Ces commandes ne sont disponibles que dans les channels " + get_channel("casino-paris") + ", " + get_channel("casino-hong-kong") + " et " + get_channel("casino-las-vegas") + ".")
             .addField("Commandes Jeu Loup-Garou",
                 "La liste des commandes du jeu de loup-garou est disponible avec la commande `w.help`. Ce bot n'est utilisable que dans le channel" + get_channel("loup-garou"))
+            .addField("Commandes Modération",
+                "`!admin` : Commande d'administration\n" +
+                "`!switchClass` : C'est la rentrée les enfants")
 
   channel.send(embed)
 }
