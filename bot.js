@@ -3,14 +3,13 @@ const emrioutils = require('emrioutils')
 const fs = require('fs')
 const login = require("./assets/login")
 const getprefix = require('./assets/getprefix')
+const getcommmands = require('./assets/getcommands')
 
 // Command handlers
 var COMMANDHANDLERS = {}
-COMMANDHANDLERS.admin = require("./assets/handlers/admin")
-COMMANDHANDLERS.switchclass = require("./assets/handlers/switchclass")
-COMMANDHANDLERS.info = require("./assets/handlers/info")
-COMMANDHANDLERS.help = require("./assets/handlers/help")
-COMMANDHANDLERS.club = require("./assets/handlers/club")
+for (cmd of getcommmands()) {
+  COMMANDHANDLERS[cmd] = require("./assets/handlers/" + cmd)
+}
 
 // The Bot Object
 const Bot = new Discord.Client()
