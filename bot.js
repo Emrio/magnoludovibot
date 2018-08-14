@@ -10,6 +10,7 @@ COMMANDHANDLERS.admin = require("./assets/handlers/admin")
 COMMANDHANDLERS.switchclass = require("./assets/handlers/switchclass")
 COMMANDHANDLERS.info = require("./assets/handlers/info")
 COMMANDHANDLERS.help = require("./assets/handlers/help")
+COMMANDHANDLERS.club = require("./assets/handlers/club")
 
 // The Bot Object
 const Bot = new Discord.Client()
@@ -111,6 +112,17 @@ Bot.on("message", (message) => {
   var member = message.member // The guild member of the message
   var prefix = getprefix() // The server's prefix
 
+  if(message.attachments.array().length > 0 && guild == undefined && GUILD.members.find(m => m.user.equals(author)) && GUILD.members.find(m => m.user.equals(author)).roles.find(r => r.name == "Vérifiés") == null) {
+
+    var verif_channel = GUILD.channels.find(c => c.name == "modération-vérification")
+    var attachment = new Discord.Attachment(message.attachments.first().url)
+
+    verif_channel.send(":arrow_forward: Nouvelle demande de vérification envoyé par " + author.username + ". Pour accepter sa candidature, effectuer la commande `!register " + author.username + " as <classe>`\n__**Info**__: La classe doit être sous la forme 2nd4, 2ND5, 1S1, 1s3, TS1, ts4, 1l, tl, tsti, TSTI, 1sti, prépas, prép, prep, prepas, pre2nd\n\nSi le membre n'est pas un élève, merci d'exécuter `!register " + author.username + "` puis de faire sa vérification manuellement.", attachment)
+
+    verif_channel.send("WIP ! La commande ne fonctionne pas !!!")
+
+  }
+
   // Do not process if the message is not correct (from DM for instance)
   if(message === undefined || author === undefined || guild === undefined || channel === undefined || guild === null || member === undefined || member === null) return
 
@@ -145,6 +157,10 @@ Bot.on("message", (message) => {
 
       case "info":
         COMMANDHANDLERS.info(metaquery)
+        break
+
+      case "club":
+        COMMANDHANDLERS.club(metaquery)
         break
 
       case "help":
@@ -184,6 +200,7 @@ Bot.on("guildMemberAdd", (member) => {
 Bot.on("ready", () => {
   GUILD = Bot.guilds.find(g => g.id == "461887502631043082")
   console.log("[Bot] (🔔) Prêt à vous servir.")
+  Bot.user.setActivity("Version expérimentale en cours d'utilisation", { type: "WATCHING" })
 })
 
 /* ERROR EVENT */

@@ -22,7 +22,8 @@ module.exports = (metaquery) => {
             .setDescription("Aides sur les commandes disponibles sur le serveur")
             .addField("Commandes Générales",
                 "`!info` : Informations sur le serveur\n" +
-                "`!help` : Affiche la fiche d'aide")
+                "`!help` : Affiche la fiche d'aide\n" +
+                "`!club [join/j/+/leave/l/- club name]` : Gestion de vos clubs")
             .addField("Commandes Musique",
                 "La liste des commandes de musique est disponibe [ici](https://rythmbot.co/features#list). Ces commandes ne sont disponibles que dans le channel " + get_channel("commandes-bot-musique"))
             .addField("Commandes Math",
