@@ -2,15 +2,16 @@ const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
 const fs = require('fs')
 
-const login = require("./assets/login")
-const getprefix = require('./assets/getprefix')
-const getcommmands = require('./assets/getcommands')
+const login = require('./assets/login')
 
-const indev = require('./assets/getindev')()
+const cfg = require("./assets/get_config.js")()
+const prefix = cfg.prefix
+const commands = cfg.commands
+const indev = cfg.indev
 
 // Command handlers
 var COMMANDHANDLERS = {}
-for (cmd of getcommmands()) {
+for (cmd of commands) {
   COMMANDHANDLERS[cmd] = require("./assets/handlers/" + cmd)
 }
 
