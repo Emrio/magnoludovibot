@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
 const fs = require('fs')
 
+const error_handler = require('./assets/error_handler')
 const login = require('./assets/login')
 
 const cfg = require("./assets/get_config.js")()
@@ -214,7 +215,7 @@ Bot.on("ready", () => {
 
 /* ERROR EVENT */
 Bot.on("error", (err) => {
-  console.error(err)
+  error_handler(err)
 })
 
 /* WARNING EVENT */
