@@ -118,17 +118,34 @@ Bot.on("message", (message) => {
   var guild = message.guild // Get message's guild
   var channel = message.channel // Get message's channel
   var member = message.member // The guild member of the message
-  var prefix = prefix // The server's prefix
 
-  if(message.attachments.array().length > 0 && guild == undefined && GUILD.members.find(m => m.user.equals(author)) && GUILD.members.find(m => m.user.equals(author)).roles.find(r => r.name == "Vérifiés") == null) {
+  if(message.attachments.array().length > 0 && guild == undefined && GUILD.members.find(m => m.user.equals(author)) && GUILD.members.find(m => m.user.equals(author)).roles.find(r => r.name === "Vérifiés") === null) {
 
+    // Anti spam
+    if (GUILD.members.find(m => m.user.equals(author)).roles.find(r => r.name === "En cours de vérification") !== null) {
+      author.send("❗️ Vous avez déjà envoyé votre demande de vérification. Celle-ci ne sera pas prise en compte.\nSi la précédente était une erreur, veuillez prévenir la Modération.\nSi la Modération n'a pas répondu à votre demande de vérification après 5 min. Vous pouvez prévenir les modérateurs en ligne en Messages Privés.")
+      return
+    }
+
+    // Message to verif channel
     var verif_channel = GUILD.channels.find(c => c.name == "modération-vérification")
-    var attachment = new Discord.Attachment(message.attachments.first().url)
+    verif_channel.send(
+      ":arrow_forward: Nouvelle demande de vérification envoyé par " + author.username + ". Pour accepter sa candidature, effectuer la commande `!register " + author.username + " as <classe>`\n__**Info**__: La classe doit être sous la forme 2nd4, 2ND5, 1S1, 1s3, TS1, ts4, 1l, tl, tsti, TSTI, 1sti, prépas, prép, prep, prepas, pre2nd\n\nSi le membre n'est pas un élève, merci d'exécuter `!register " + author.username + "` puis de faire sa vérification manuellement.",
+      { files: [{ attachment: message.attachments.first().url, name: message.attachments.first().filename }] }
+    )
 
-    verif_channel.send(":arrow_forward: Nouvelle demande de vérification envoyé par " + author.username + ". Pour accepter sa candidature, effectuer la commande `!register " + author.username + " as <classe>`\n__**Info**__: La classe doit être sous la forme 2nd4, 2ND5, 1S1, 1s3, TS1, ts4, 1l, tl, tsti, TSTI, 1sti, prépas, prép, prep, prepas, pre2nd\n\nSi le membre n'est pas un élève, merci d'exécuter `!register " + author.username + "` puis de faire sa vérification manuellement.", attachment)
+    // Append user id to the list of users to verify
+    if (options.get("to_verify_users") == undefined) options.set("to_verify_users", [])
+    to_verify_users = options.get("to_verify_users")
+    to_verify_users.push(author.id)
+    options.set("to_verify_users", to_verify_users)
 
-    verif_channel.send("WIP ! La commande ne fonctionne pas !!!")
+    // Add the "being verified" role to the user
+    GUILD.members.find(m => m.id === author.id).addRole(GUILD.roles.find(r => r.name === "En cours de vérification"))
 
+    // Response to user
+    author.send("✅ Votre demande de vérification a bien été prise en compte. Elle sera traité sous peut par un membre de la Modération.\nVous pouvez accélerer votre vérification en envoyant un message privé à un membre de la Modération actuellement en ligne")
+    
   }
 
   // Do not process if the message is not correct (from DM for instance)
@@ -151,7 +168,7 @@ Bot.on("message", (message) => {
       member: member,
       prefix: prefix,
       args: args,
-      message: message,
+      message: message
     }
 
     switch (args[0]) {
