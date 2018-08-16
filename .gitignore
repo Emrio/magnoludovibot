@@ -7,3 +7,4 @@ node_modules/
 node_modules
 assets/config.json
 .DS_Store
+options.json

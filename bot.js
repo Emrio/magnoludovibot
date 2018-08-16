@@ -2,6 +2,8 @@ const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
 const fs = require('fs')
 
+const options = new (require('./assets/models/Options'))()
+
 const error_handler = require('./assets/error_handler')
 const login = require('./assets/login')
 
