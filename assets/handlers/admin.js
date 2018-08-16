@@ -18,7 +18,7 @@ module.exports = (metaquery) => {
 
     if(args[2] !== undefined) {
 
-      var totogglerole = message.mentions.members.first() || guild.members.get(args[1])
+      var totogglerole = message.mentions.members.first() || guild.members.get(args[2])
 
       if(totogglerole !== undefined) {
 
