@@ -116,7 +116,7 @@ Bot.on("message", (message) => {
   var guild = message.guild // Get message's guild
   var channel = message.channel // Get message's channel
   var member = message.member // The guild member of the message
-  var prefix = getprefix() // The server's prefix
+  var prefix = prefix // The server's prefix
 
   if(message.attachments.array().length > 0 && guild == undefined && GUILD.members.find(m => m.user.equals(author)) && GUILD.members.find(m => m.user.equals(author)).roles.find(r => r.name == "Vérifiés") == null) {
 
