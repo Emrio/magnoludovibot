@@ -2,14 +2,11 @@ const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
 const path = require('path')
 const fs = require('fs')
+const cfg = require("./config.json")
 
 module.exports = (Bot) => {
 
-  fs.readFile(path.join(__dirname, 'config.json'), (err, data) => {
-    var config = JSON.parse(data)
-    Bot.login(config.token)
+  Bot.login(cfg.token)
 
-    return Bot
-
-  })
+  return Bot
 }

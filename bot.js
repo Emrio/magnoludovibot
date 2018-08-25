@@ -7,7 +7,7 @@ const options = new (require('./assets/models/Options'))()
 const error_handler = require('./assets/error_handler')
 const login = require('./assets/login')
 
-const cfg = require("./assets/get_config.js")()
+const cfg = require("./assets/config.json")
 const prefix = cfg.prefix
 const commands = cfg.commands
 const indev = cfg.indev
@@ -145,7 +145,7 @@ Bot.on("message", (message) => {
 
     // Response to user
     author.send("✅ Votre demande de vérification a bien été prise en compte. Elle sera traité sous peut par un membre de la Modération.\nVous pouvez accélerer votre vérification en envoyant un message privé à un membre de la Modération actuellement en ligne")
-    
+
   }
 
   // Do not process if the message is not correct (from DM for instance)
