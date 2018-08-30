@@ -34,7 +34,9 @@ module.exports = (metaquery) => {
                 "La liste des commandes du jeu de loup-garou est disponible avec la commande `w.help`. Ce bot n'est utilisable que dans le channel" + get_channel("loup-garou"))
             .addField("Commandes Modération",
                 "`!admin <role>` : Commande d'administration\n" +
-                "`!switchClass` : C'est la rentrée les enfants")
+                "`!switchClass` : C'est la rentrée les enfants\n" +
+                "`!register <user> [as <class>]` : Enregistre et vérifie un nouveau membre\n"
+              )
 
   channel.send(embed)
 }
