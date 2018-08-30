@@ -163,6 +163,6 @@ module.exports = (metaquery) => {
       })
 
 
-  } else channel.send("Vous devez spécifier un pseudo ou d'utiliser le mot-clé `last`")
+  } else channel.send("Vous devez spécifier un pseudo"/* ou d'utiliser le mot-clé `last`"*/)
 
 }
