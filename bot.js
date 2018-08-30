@@ -192,6 +192,14 @@ Bot.on("message", (message) => {
         COMMANDHANDLERS.register(metaquery)
         break
 
+      case "clearClassChannels":
+        COMMANDHANDLERS.clearclasschannels(metaquery)
+        break
+
+      case "classBC":
+        COMMANDHANDLERS.classbroadcast(metaquery)
+        break
+
       case "help":
         COMMANDHANDLERS.help(metaquery)
         break
