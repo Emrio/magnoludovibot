@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const emrioutils = require('emrioutils')
 const fs = require('fs')
-const options = new (require('./../models/Options'))()
+// const options = new (require('./../models/Options'))()
 
 
 String.prototype.last = function () {
@@ -26,7 +26,7 @@ module.exports = (metaquery) => {
 
   if(args[1]) {
 
-    var to_verif_ids = options.get("to_verify_users")
+    //var to_verif_ids = options.get("to_verify_users")
     var to_veri
 
     var member = message.mentions.members.first() || guild.members.filter(m => m.user.username.toLowerCase().startsWith(args[1].toLowerCase()))
