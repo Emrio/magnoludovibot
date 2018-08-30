@@ -226,10 +226,8 @@ Bot.on("guildMemberAdd", (member) => {
 
   member.addRole(invitedRole)
     .catch(console.error)
-
-  var welcomeText = "Bienvenue sur le serveur Discord du Lycée Louis-Le-Grand de la part de l'équipe de Modération.\nJe suis Louis XIV, le bot principal du serveur.\nJe te conseille de lire le règlement du serveur puis de te présenter dans le channel `#présentation`. Si tu es un élève du lycée, merci de signaler ta classe dans ta présentation. Sinon, merci d'indiquer les raisons pour lesquelles tu nous rejoins !\n\Je te souhaite de passer un bon moment parmi nous !"
-
-  member.user.send(welcomeText)
+    
+  member.user.send(cfg.welcome_text)
 
 })
 
