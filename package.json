@@ -20,7 +20,8 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "github:discordjs/discord.js#11.4-dev",
-    "emrioutils": "^2.1.0"
+    "emrioutils": "^2.1.0",
+    "express": "^4.16.3"
   },
   "nodemonConfig": {
     "ignore": [

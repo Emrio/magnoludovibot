@@ -6,6 +6,7 @@ const options = new (require('./assets/models/Options'))()
 
 const error_handler = require('./assets/error_handler')
 const login = require('./assets/login')
+const app = require('./webserver/app')
 
 const cfg = require("./assets/config.json")
 const prefix = cfg.prefix
@@ -226,7 +227,7 @@ Bot.on("guildMemberAdd", (member) => {
 
   member.addRole(invitedRole)
     .catch(console.error)
-    
+
   member.user.send(cfg.welcome_text)
 
 })
