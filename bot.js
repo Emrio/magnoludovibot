@@ -135,11 +135,11 @@ Bot.on("message", (message) => {
       { files: [{ attachment: message.attachments.first().url, name: message.attachments.first().filename }] }
     )
 
-    // Append user id to the list of users to verify
-    if (options.get("to_verify_users") == undefined) options.set("to_verify_users", [])
-    to_verify_users = options.get("to_verify_users")
-    to_verify_users.push(author.id)
-    options.set("to_verify_users", to_verify_users)
+    // // Append user id to the list of users to verify
+    // if (options.get("to_verify_users") == undefined) options.set("to_verify_users", [])
+    // to_verify_users = options.get("to_verify_users")
+    // to_verify_users.push(author.id)
+    // options.set("to_verify_users", to_verify_users)
 
     // Add the "being verified" role to the user
     GUILD.members.find(m => m.id === author.id).addRole(GUILD.roles.find(r => r.name === "En cours de vérification"))
