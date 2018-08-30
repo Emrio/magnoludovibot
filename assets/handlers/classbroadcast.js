@@ -5,6 +5,11 @@ const fs = require('fs')
 
 module.exports = async (metaquery) => {
 
+  if( !message.member.permissions.has("ADMINISTRATOR") ) {
+    channel.send("Vous ne pouvez pas utiliser cette commande")
+    return
+  }
+
   var args = metaquery.args
   var channel = metaquery.channel
   var message = metaquery.message
