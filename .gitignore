@@ -1,10 +1,15 @@
-.TODO
-config.json
-oldcodes/
-assets/config.json
-*.json
+# Node modules
 node_modules/
-node_modules
-assets/config.json
-.DS_Store
+
+# Old, unused, codes
+oldcodes/
+
+# Configuration file and register-waiting ids file
+config.json
 options.json
+
+# Todo list
+.TODO
+
+# Macos system file
+.DS_Store
