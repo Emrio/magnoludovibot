@@ -188,6 +188,10 @@ Bot.on("message", (message) => {
         COMMANDHANDLERS.club(metaquery)
         break
 
+      case "register":
+        COMMANDHANDLERS.register(metaquery)
+        break
+
       case "help":
         COMMANDHANDLERS.help(metaquery)
         break
