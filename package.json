@@ -4,7 +4,7 @@
   "description": "Bot Discord pour le serveur du Lycée Louis-Le-Grand",
   "main": "bot.js",
   "scripts": {
-    "start": "nodemon bot.js"
+    "start": "node bot.js"
   },
   "repository": {
     "type": "git",
