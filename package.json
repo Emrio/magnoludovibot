@@ -19,10 +19,12 @@
   "author": "Emrio <emrio@emrio.fr>",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^11.4.2",
+    "discord.js": "github:discordjs/discord.js#11.4-dev",
     "emrioutils": "^2.1.0"
   },
   "nodemonConfig": {
-    "ignore": ["options.json"]
+    "ignore": [
+      "options.json"
+    ]
   }
 }
