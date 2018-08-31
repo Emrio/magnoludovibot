@@ -104,6 +104,25 @@ Bot.on("messageReactionAdd", (reaction, user) => {
 
 })
 
+const EVENTS = {
+  MESSAGE_REACTION_ADD: "messageReactionAdd"
+}
+
+Bot.on("raw", async event => {
+  if (!EVENTS.hasOwnProperty(event.t)) return
+
+  const {d: data} = event
+  const user = Bot.users.get(data.user_id)
+  const channel = Bot.channels.get(data.channel_id) || await user.createDM()
+
+  if (channel.messages.has(data.message_id)) return
+
+  const message = await channel.fetchMessage(data.message_id)
+	const reaction = message.reactions.get(data.emoji.id ? data.emoji.name + ":" + data.emoji.id : data.emoji.name)
+
+	Bot.emit(EVENTS[event.t], reaction, user)
+})
+
 
 
 
