@@ -12,7 +12,7 @@ module.exports = (GUILD, message) => {
     return
   }
 
-  const levels = [ "Pré-Secondes", "Secondes", "Premières", "Terminales", "Anciens Élèves"] // The levels available
+  const levels = [ "Pré-Secondes", "Secondes", "Premières", "Terminales", "Anciens élèves"] // The levels available
   const classes = []
   // Gets the class roles (2nd-1, 2nd-2, 1S-1, 1S-2, TS-1, TS-2, 1L, 1STI2D, ...)
   GUILD.roles.forEach((role) => {
@@ -38,7 +38,7 @@ module.exports = (GUILD, message) => {
 
       // Get the current level of the pupil (eg: Secondes), its new level (eg: Premières) and its current class (eg: 2nd-1)
       var currentLevel = member.roles.find(role => levels.includes(role.name))
-      var newLevel = GUILD.roles.find(r => r.name === (currentLevel && currentLevel.name && (levels[levels.indexOf(currentLevel.name)+1] !== undefined && levels.indexOf(currentLevel.name) > -1) ? levels[levels.indexOf(currentLevel.name)+1] : "Anciens Élèves"))
+      var newLevel = GUILD.roles.find(r => r.name === (currentLevel && currentLevel.name && (levels[levels.indexOf(currentLevel.name)+1] !== undefined && levels.indexOf(currentLevel.name) > -1) ? levels[levels.indexOf(currentLevel.name)+1] : "Anciens élèves"))
       var currentClass = member.roles.find(role => classes.includes(role.name))
 
       console.log(newLevel.name, newLevel.id)
@@ -53,7 +53,7 @@ module.exports = (GUILD, message) => {
 // Add new level
               member.addRole(newLevel, "[MAJ Classes] Ajout du nouveau niveau")
                 .then(() => {
-                  if(newLevel.name !== "Anciens Élèves") {
+                  if(newLevel.name !== "Anciens élèves") {
 // Send new class prompt message
                     var classlabel = newLevel.name.substring(0, newLevel.name.length-1)
                          if(newLevel.name === "Secondes") var classdiscriminator = "2nd-"
