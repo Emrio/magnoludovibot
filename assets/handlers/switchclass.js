@@ -38,20 +38,19 @@ module.exports = (GUILD, message) => {
 
       // Get the current level of the pupil (eg: Secondes), its new level (eg: Premières) and its current class (eg: 2nd-1)
       var currentLevel = member.roles.find(role => levels.includes(role.name))
-      var newLevel = GUILD.roles.find(r => r.name === ((levels[levels.indexOf(currentLevel.name)+1] !== undefined && levels.indexOf(currentLevel.name) > -1) ? levels[levels.indexOf(currentLevel.name)+1] : "Anciens Élèves"))
+      var newLevel = GUILD.roles.find(r => r.name === (currentLevel && currentLevel.name && (levels[levels.indexOf(currentLevel.name)+1] !== undefined && levels.indexOf(currentLevel.name) > -1) ? levels[levels.indexOf(currentLevel.name)+1] : "Anciens Élèves"))
       var currentClass = member.roles.find(role => classes.includes(role.name))
+
+      console.log(newLevel.name, newLevel.id)
 
 // Remove level
       member.removeRole(currentLevel, "[MAJ Classes] Suppresion du niveau")
-        .catch(console.error)
         .then(() => {
 // Remove class
           member.removeRole(currentClass, "[MAJ Classes] Suppresion de la classe")
-            .catch(() => { console.log("[MAJ Classes] (❓) " + member.user.username + " n'a pas de classe") })
             .then(() => {
 // Add new level
               member.addRole(newLevel, "[MAJ Classes] Ajout du nouveau niveau")
-                .catch(console.error)
                 .then(() => {
                   if(newLevel.name !== "Anciens Élèves") {
 // Send new class prompt message
@@ -63,7 +62,6 @@ module.exports = (GUILD, message) => {
                     text += (levels.indexOf(newLevel.name) > 1) ? "\n\nNote: une icône :regional_indicator_l: est disponible pour les 1L et TL et une icône :regional_indicator_t: pour les 1STI2D et TSTI2D.\n\n" : "\n\n"
                     text += "Passe une bonne journée - Signé, Louis XIV"
                     member.user.send(text)
-                      .catch(console.error)
 // React with 1-7 number emojis + L and T emojis if in Premières or Terminales
                       .then((message) => {
                         message.react("\u0031\u20E3") // 1 emoji
@@ -97,7 +95,7 @@ module.exports = (GUILD, message) => {
                                                       console.log("[MAJ Classes] (✅) Demande de mise à jour de classe envoyée à " + member.user.username + ". Traité en " + stopwatch.elapsed() + "ms.")
                                                       resolve() // NEXT!!!
                                                     }
-                      })})})})})})})})
+                      })})})})})})})}).catch(console.error)
 
                   // The user is now an old student
                   } else {
@@ -109,8 +107,11 @@ module.exports = (GUILD, message) => {
                   }
 
                 })
+                .catch(console.error)
             })
+            .catch(() => { console.log("[MAJ Classes] (❓) " + member.user.username + " n'a pas de classe") })
         })
+        .catch(console.error)
     })
 
   }
