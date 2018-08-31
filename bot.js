@@ -59,7 +59,7 @@ Bot.on("messageReactionAdd", (reaction, user) => {
     GUILD.members.find(m => m.id == user.id).addRole(GUILD.roles.find(r => r.name == classname), "[MAJ Classes] Affectation de la nouvelle classe.")
       .catch(console.error)
       .then(() => {
-        user.send("Votre nouvelle classe vous a été affecté. Passez une bonne année !")
+        user.send("Votre nouvelle classe vous a été affectée. Passez une bonne année !")
         console.log("[MAJ Classes] (🎒) " + user.username + " a été affecté en " + classname)
        })
 
