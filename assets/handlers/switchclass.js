@@ -48,6 +48,7 @@ module.exports = (GUILD, message) => {
         .then(() => {
 // Remove class
           member.removeRole(currentClass, "[MAJ Classes] Suppresion de la classe")
+            .catch(() => { console.log("[MAJ Classes] (❓) " + member.user.username + " n'a pas de classe") })
             .then(() => {
 // Add new level
               member.addRole(newLevel, "[MAJ Classes] Ajout du nouveau niveau")
@@ -109,7 +110,6 @@ module.exports = (GUILD, message) => {
                 })
                 .catch(console.error)
             })
-            .catch(() => { console.log("[MAJ Classes] (❓) " + member.user.username + " n'a pas de classe") })
         })
         .catch(console.error)
     })
