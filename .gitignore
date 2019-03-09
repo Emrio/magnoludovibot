@@ -6,7 +6,6 @@ oldcodes/
 
 # Configuration file and register-waiting ids file
 config.json
-options.json
 
 # Todo list
 .TODO
